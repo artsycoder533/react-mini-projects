@@ -10,7 +10,7 @@ import React, { Component } from "react";
 // import Nine from "./components/Nine";
 // import Ten from "./components/Ten";
 import Eleven from "./components/Eleven";
-// import CountingMachine from "./components2/CountingMachine";
+
 
 class App extends Component {
   render() {

@@ -1,70 +1,111 @@
-# Getting Started with Create React App
+# This repository contains "mini projects" built with React while following Edufect Institute Complete React JS Playlist
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Follow the playlist here [React Tutorials - Complete React JS - From beginner to master ReactJS](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
-In the project directory, you can run:
+To Take a look at the individual programs run:
+
+### `npm install`
+
+To download the dependencies needed.
+
+## Directory
+
+### Components Folder 
+
+- Components & JSX
+- Event Handling & setState
+
+- Directions: 
+    - The Components folder contains 11 Exercises/Applications, those listed below the row of stars are applications
+        - One (3 Strings)
+        - Two (Numbers)
+        - Three (Sorting Numbers)
+        - Four (Students Array)
+        - Five (Quiz Show Data)
+        ********
+        - Six (Button Counter)
+        - Seven (Contact List)
+        - Eight (Name List)
+        - Nine (Shopping Cart)
+        - Ten (Code Creator) 
+            - This is my solution to the video Demo Challenge that can be found here [React Exercise - Code App - Part 1](https://www.youtube.com/watch?v=a9q_1reMroc&t=0s).
+        - Eleven (Code Creator Remix)
+            - This is my solution to the video Demo Challenge that can be found here [React Exercise - Code App - Part 2](https://www.youtube.com/watch?v=3NyoQ0VM_fw&t=0s)
+            - I added extra features and gave it my own twist.
+
+    - Go to App.js
+        - Uncomment the corresponding import statement at the top
+        - Ex:
+            ```
+                import React, { Component } from "react";
+                // import One from './components/One';
+                // import Two from './components/Two';
+                // import Three from './components/Three';
+                // import Four from "./components/Four";
+                // import Five from "./components/Five";
+                // import Six from "./components/Six";
+                // import Seven from "./components/Seven";
+                // import Eight from "./components/Eight";
+                // import Nine from "./components/Nine";
+                // import Ten from "./components/Ten";
+                import Eleven from "./components/Eleven";
+            ```
+
+         - In the return statement replace the Component name to match the program you would like to run.
+            - Ex: 
+                ```                              
+                class App extends Component {
+                render() {
+                    return (
+                    <div className="App">
+                        <Eleven />   <-------- (change this line)
+                    </div>
+                    );
+                }
+                }
+                ```
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To start the development server. Do this after youve following the directions above.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Components2 Folder
+- Props & Lifting The State
 
-### `npm test`
+- Directions: 
+    - Open the Components2 Folder to see the following programs
+        - CountingMachine
+        - VisitorSystem
+        - PhotosPage
+        - Cart 
+            - This is my solution to the video demo that can be found here [Exercise after React Course Lesson - #4 - Props and Lifting the State Up - Learn React](https://www.youtube.com/watch?v=1MR0VBx33uk&t=0s)
+            - I added minimal styling and decided to get my own data to make this a little more interesting
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    - Go to Index.js
+        - Uncomment the corresponding import statement at the top to match the program you want to see
+        - Ex:
+            ```
+                import React from 'react';
+                import ReactDOM from 'react-dom';
+                import './index.css';
+                // import App from './App';
+                // import reportWebVitals from './reportWebVitals';
+                // import CountingMachine from './components2/CountingMachine';    <------(uncomment only one of these)
+                // import PhotosPage from './components2/PhotosPage';
+                // import VisitorSystem from './components2/VisitorSystem';
+                import Cart from './components2/Cart';
+            ```
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+         - In the render statement replace App.Js with the correspoding name in the import statement at the top
+            - Ex: 
+                ```                              
+                ReactDOM.render(
+                    <React.StrictMode>
+                        <Cart />    <---------(change this line)
+                    </React.StrictMode>,
+                    document.getElementById('root')
+                );
+                ```
+    -You should only have to refresh the page between following the steps to see each program.
