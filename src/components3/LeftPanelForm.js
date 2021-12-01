@@ -5,17 +5,40 @@ export default class LeftPanelForm extends Component {
     //the main component is send us the options array and the options selected array
     let copyOfProps = { ...this.props.optionsSel };
       let { currentTarget: input } = e;
-      //if the input name is brand or ram call updateCBs function
+      //check if we are getting input from the checkbox or radio buttons
+      //if the input name is brand or ram call updateCBs function and set it equal to the result
     input.name === "brand"
-      ? (copyOfProps.brand = this.updateCBs())
+      ? (copyOfProps.brand = this.updateCBs(
+          input.checked,
+          input.value,
+          copyOfProps.brand
+        ))
       : input.name === "ram"
-      ? copyOfProps.ram = this.updateCBs()
-      : (copyOfProps[input.name] = input.value);
+      ? (copyOfProps.ram = this.updateCBs(
+          input.checked,
+          input.value,
+          copyOfProps.ram
+        ))
+      : //else we are getting the input from the radio buttons
+        (copyOfProps[input.name] = input.value);
     this.props.onChangeOption(copyOfProps);
     };
     
-    updateCBs = () => {
-        
+    updateCBs = (checked, value, arr) => {
+        //if the value of checked is true, add to the selected arr because it has been selected
+        if (checked) {
+          arr.push(value);
+        }
+        //if value is not checked,
+        //find the index of value and remove from the selected array because it has been deselected
+        else {
+          let index = arr.findIndex((el) => el === value);
+          if (index >= 0) {
+            arr.splice(index, 1);
+          }
+        }
+        //return the updated array with selected values added
+        return arr;
     }
 
   //function dynamically creates a checkbox
@@ -27,12 +50,12 @@ export default class LeftPanelForm extends Component {
         <br />
         {arr.map((opt, index) => {
           return (
-            <React.Fragment>
+            <React.Fragment key={Math.random()}>
               <input
                 type="checkbox"
                 name={name}
                 value={opt}
-                //search the techsKnown array to find the index of the corresponding technology that has been checked, if it is < 0 it isnt in the array and shouldnt be checked
+                //search the techsKnown array to find the index of the corresponding technology that has been checked, if it is <= 0 it isnt in the array and shouldnt be checked
                 checked={selArr.findIndex((sel) => sel === opt) >= 0}
                 onChange={this.handleChange}
                 key={Math.random()}
@@ -55,7 +78,7 @@ export default class LeftPanelForm extends Component {
         <br />
         {arr.map((opt) => {
           return (
-            <React.Fragment>
+            <React.Fragment key={Math.random()}>
               <input
                 className="form-check-input"
                 type="radio"
@@ -76,10 +99,11 @@ export default class LeftPanelForm extends Component {
   };
 
   render() {
-    const { optionsSel, optionsArray } = this.props;
+      const { optionsSel, optionsArray } = this.props;
+    //   console.log(optionsArray.brand, optionsArray.ram, optionsSel.brand, optionsSel.ram);
     return (
       <div>
-        <h4>Choose Options</h4>
+        <h4>Filter Options</h4>
         {/* invokes the onClear function thats passed down as a prop from MainComponent */}
         <button onClick={this.props.onClear}>Clear All</button>
         <br />

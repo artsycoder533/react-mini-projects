@@ -119,8 +119,110 @@ export default class MainComponent3 extends Component {
     },
   };
 
-    render() {
-        const { optionsArray, optionsSel } = this.state;
+  showLaptops = () => {
+    const { laptops, optionsSel } = this.state;
+    const { brand, processor, rating, ram } = optionsSel;
+
+    //to filter by brand
+    //if the brand array is not empty
+    //filter the laptops array by any brands found in the optionsSel, if its in there its index will be greater than - 1
+    //otherwise return all laptops
+    const laptopsByBrand =
+      brand.length > 0
+        ? laptops.filter(
+            (laptop) => brand.findIndex((brand) => brand === laptop.brand) >= 0
+          )
+        : laptops;
+
+    //to filter by ram
+    //if the ram array is not empty
+    //filter the newly created array filtered by brand that also has the selected ram from the optionsSel array
+    //otherwise you dont need to further filter the laptopsByBrand array and can just return it
+    const laptopsByRam =
+      ram.length > 0
+        ? laptopsByBrand.filter(
+            (laptop) => ram.findIndex((ram) => ram === laptop.ram) >= 0
+          )
+        : laptopsByBrand;
+
+    //to filter by processor
+    //if the processor exists(not an empty string)
+    //filter the laptops that have already been filtered by Ram for any laptops who processor also matches the processor string parameter
+    //otherwise no need to filter the laptopsByRam array and you can return it as is
+    const laptopsByProcessor = processor
+      ? laptopsByRam.filter((laptop) => laptop.processor === processor)
+      : laptopsByRam;
+
+    //to filter by rating
+    //if the rating is not an empty string
+    //filter the thats thats have already been filtered by processor for any laptops whos rating match the rating string parameter
+    //otherwise return the laptopsByProcessor array unfiltered
+    const laptopsByRating = rating
+      ? laptopsByProcessor.filter((laptop) => laptop.rating === rating)
+      : laptopsByProcessor;
+
+    //to show only filtered laptops, map through the laptopsByRating array because it contains only laptops that meet all the conditions
+    return laptopsByRating.length === 0 ? (
+      <tr>
+        <td colSpan="6">
+          Sorry, there are no laptops that matched your search
+        </td>
+      </tr>
+    ) : (
+      <React.Fragment>
+        {laptopsByRating.map((laptop) => {
+          const { model, brand, processor, rating, ram, hardDisk } = laptop;
+          return (
+            <tr style={{ border: "1px solid black" }} key={Math.random()}>
+              <td style={{ border: "1px solid black" }}>{model}</td>
+              <td style={{ border: "1px solid black" }}>{brand}</td>
+              <td style={{ border: "1px solid black" }}>{ram}</td>
+              <td style={{ border: "1px solid black" }}>{hardDisk}</td>
+              <td style={{ border: "1px solid black" }}>{rating}</td>
+              <td style={{ border: "1px solid black" }}>{processor}</td>
+            </tr>
+          );
+        })}
+      </React.Fragment>
+    );
+  };
+
+  handleClear = () => {
+    const copyOfState = { ...this.state };
+    //change all values inside optionsSel back to their default
+    copyOfState.optionsSel = {
+      brand: [],
+      ram: [],
+      processor: "",
+      rating: "",
+    };
+    this.setState(copyOfState);
+  };
+
+  handleChangeOption = (optionsSel) => {
+    const copyOfState = { ...this.state };
+    //set the optionsSel array to match the new array containing everything the user selected
+    copyOfState.optionsSel = optionsSel;
+    this.setState(copyOfState);
+  };
+
+  isSelected = () => {
+    const { brand, ram, processor, rating } = this.state.optionsSel;
+    if (
+      brand.length === 0 &&
+      ram.length === 0 &&
+      processor === "" &&
+      rating === ""
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  render() {
+    const { optionsArray, optionsSel } = this.state;
+
     return (
       <div className="holder">
         <div className="left">
@@ -131,19 +233,21 @@ export default class MainComponent3 extends Component {
             onClear={this.handleClear}
           />
         </div>
-            <div className="right">
-                <h2>Selected Laptops</h2>
-          <table>
-            <thead>
+        <div className="right">
+          <h2>{this.isSelected() ? "Selected Laptops" : "All Laptops"}</h2>
+
+          <table style={{ border: "1px solid black" }}>
+            <thead style={{ border: "1px solid black" }}>
               <tr>
-                <th>Model</th>
-                <th>Brand</th>
-                <th>Ram</th>
-                <th>Hard Disk</th>
-                <th>Rating</th>
-                <th>Processor</th>
+                <th style={{ border: "1px solid black" }}>Model</th>
+                <th style={{ border: "1px solid black" }}>Brand</th>
+                <th style={{ border: "1px solid black" }}>Ram</th>
+                <th style={{ border: "1px solid black" }}>Hard Disk</th>
+                <th style={{ border: "1px solid black" }}>Rating</th>
+                <th style={{ border: "1px solid black" }}>Processor</th>
               </tr>
             </thead>
+            <tbody>{this.showLaptops()}</tbody>
           </table>
         </div>
       </div>
