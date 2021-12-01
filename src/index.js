@@ -12,12 +12,13 @@ import "./index.css";
 // import CourseComponent from "./components3/CourseComponent";
 // import SimpleForm2 from "./components3/SimpleForm2";
 // import MainComponent2 from "./components3/MainComponent2";
-import MainComponent3 from "./components3/MainComponent3";
+// import MainComponent3 from "./components3/MainComponent3";
+import MainComponent4 from "./components3/MainComponent4";
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <MainComponent3 />
+    <MainComponent4 />
   </React.StrictMode>,
   document.getElementById("root")
 );
