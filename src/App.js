@@ -9,7 +9,7 @@ import React, { Component } from "react";
 // import Eight from "./components/Eight";
 // import Nine from "./components/Nine";
 // import Ten from "./components/Ten";
-import Eleven from "./components/Eleven";
+// import Eleven from "./components/Eleven";
 
 
 class App extends Component {
